@@ -1,0 +1,84 @@
+package techgig;
+
+/* 
+ * Enter your code here. Read input from STDIN. Print your output to STDOUT. 
+ * Your class should be named CandidateCode.
+*/
+
+import java.io.*;
+import java.util.*;
+
+public class CandidateCode {
+	public static void main(String args[]) throws Exception {
+
+		Scanner sc = new Scanner(System.in);
+
+		int numTestCases = Integer.parseInt(sc.nextLine());
+		validate(numTestCases, 10);
+
+		String[] results = new String[numTestCases];
+
+		for (int i = 0; i < numTestCases; i++) {
+			int numActors = Integer.parseInt(sc.nextLine());
+			validate(numActors, 1000);
+
+			String villanStr = sc.nextLine();
+			int[] villanIntArray = validateAndConvert(villanStr, numActors);
+			Arrays.sort(villanIntArray);
+
+			String playerStr = sc.nextLine();
+			int[] playersIntArray = validateAndConvert(playerStr, numActors);
+			Arrays.sort(playersIntArray);
+
+			for (int k = 0; k < villanIntArray.length; k++) {
+				if (villanIntArray[k] > playersIntArray[k]) {
+					results[i] = "LOSE";
+					break;
+				}
+
+				if (k == villanIntArray.length - 1) {
+					results[i] = "WIN";
+				}
+			}
+		}
+
+		for (String r : results) {
+			System.out.println(r);
+		}
+	}
+
+	private static boolean validate(int input, int limit) throws Exception {
+		if (input < 1 || input > limit) {
+			throw new Exception("Invalid input");
+		}
+		return true;
+	}
+
+	private static int[] validateAndConvert(String actorsString, int limit) throws Exception {
+
+		String[] actorsStrArray = actorsString.split(" ");
+		int[] retIntArray = new int[actorsStrArray.length];
+
+		if (actorsStrArray.length != limit) {
+			throw new Exception("Invalid input");
+		}
+
+		for (int i = 0; i < actorsStrArray.length; i++) {
+			validate(Integer.parseInt(actorsStrArray[i]), 100000);
+			retIntArray[i] = Integer.parseInt(actorsStrArray[i]);
+		}
+
+		return retIntArray;
+
+	}
+
+	private static String print(int[] arr) {
+		String retVal = "";
+		for (int e : arr) {
+			retVal += e + " ";
+		}
+
+		return retVal.trim();
+
+	}
+}
