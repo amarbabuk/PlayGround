@@ -27,5 +27,5 @@ SELECT utl_raw.cast_to_raw('{"namy":"name i have", "items": ["a", "b", "c"]}') d
 --hexa string
 SELECT utl_encode.base64_decode(utl_encode.base64_encode(utl_raw.cast_to_raw('{"namy":"name i have", "items": ["a", "b", "c"]}'))) dec  from dual
 
-
+--http://string-functions.com/hex-string.aspx
 select utl_raw.cast_to_raw('9') from dual
