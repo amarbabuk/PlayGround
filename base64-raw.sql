@@ -1,3 +1,12 @@
+-- begin of the simple base64
+select utl_raw.cast_to_varchar2(utl_encode.base64_encode(utl_raw.cast_to_raw('Abraka Dabra: The Mayaajaal'))) from dual;
+  
+select utl_raw.cast_to_varchar2(utl_encode.base64_decode(utl_raw.cast_to_raw('QWJyYWthIERhYnJhOiBUaGUgTWF5YWFqYWFs'))) from dual;
+
+--verify base64 string with decode option https://www.base64decode.org
+
+-- end of the simple base64
+
 create table myjson (idf number, jc clob)
 
 INSERT INTO myjson (idf, jc) 
